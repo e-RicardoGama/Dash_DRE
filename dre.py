@@ -79,7 +79,7 @@ app.layout = dbc.Container(children=[
                 html.Img(src=r'assets/logo.png',style={'height': '100%','width': '100%',
                                                                'margin-top':'7px'})
                     ]),
-            ],sm=12, md=2,lg=1),
+            ],sm=2, md=2,lg=1),
         dbc.Col([
             dbc.Card([
                dbc.CardBody([
@@ -88,21 +88,21 @@ app.layout = dbc.Container(children=[
                     ])
                 ], style=tab_card)
             ])
-        ],sm=12, md=5,lg=9),
+        ],sm=6, md=6,lg=9),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
                         dbc.Row([
                            dbc.Col([
                                 html.I(className='fa-brands fa-whatsapp',style={'font-size':'150%'})
-                            ],sm=2),
+                            ],sm=2,md=2,lg=2),
                             dbc.Col([
                                 html.H6('(16) 9.9791-7818'),
-                            ]),
+                            ],sm=10,md=10,lg=10),
                     ])
             ], style=tab_card)
         ]),
-        ],sm=12, md=5, lg=2)
+        ],sm=4, md=4, lg=2)
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 2
