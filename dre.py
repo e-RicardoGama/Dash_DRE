@@ -79,7 +79,7 @@ app.layout = dbc.Container(children=[
                 html.Img(src=r'assets/logo.png',style={'height': '100%','width': '100%',
                                                                'margin-top':'7px'})
                     ]),
-            ],sm=2, md=2,lg=1),
+            ],sm=12, md=2,lg=1),
         dbc.Col([
             dbc.Card([
                dbc.CardBody([
@@ -88,7 +88,7 @@ app.layout = dbc.Container(children=[
                     ])
                 ], style=tab_card)
             ])
-        ],sm=6, md=5,lg=9),
+        ],sm=12, md=5,lg=9),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -102,7 +102,7 @@ app.layout = dbc.Container(children=[
                     ])
             ], style=tab_card)
         ]),
-        ],sm=4, md=5, lg=2)
+        ],sm=12, md=5, lg=2)
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 2
