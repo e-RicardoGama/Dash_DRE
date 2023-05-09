@@ -67,37 +67,6 @@ def formatar_porc(valor):
 def formatar_valor(valor):
     return '{:,.2f}'.format(valor)
 
-def select_month(mes):
-    match mes:
-        case 0:
-            x = 'Acum Ano'
-        case 1:
-            x = 'Janeiro'
-        case 2:
-            x = 'Fevereiro'
-        case 3:
-            x = 'Março'
-        case 4:
-            x = 'Abril'
-        case 5:
-            x = 'Maio'
-        case 6:
-            x = 'Junho'
-        case 7:
-            x = 'Julho'
-        case 8:
-            x = 'Agosto'
-        case 9:
-            x = 'Setembro'
-        case 10:
-            x = 'Outubro'
-        case 11:
-            x = 'Novembro'
-        case 12:
-            x = 'Dezembro'
-    return x
-
-
 # =========  Layout  =========== #
 app.layout = dbc.Container(children=[
 
@@ -164,9 +133,6 @@ app.layout = dbc.Container(children=[
                         dbc.Col(
                             html.H6('Resultado')
                         ),
-                        dbc.Col(
-                            html.Div(id='mes', className='dbc')
-                        ),
                     ]),
                     dbc.Row([
                         dbc.Col([
@@ -188,9 +154,6 @@ app.layout = dbc.Container(children=[
                         dbc.Col([
                             html.H6('Receita x Despesas')
                         ],sm=5, lg=7,md=6),
-                        dbc.Col([
-                            html.Div(id='mes-rec',className='dbc')
-                        ],sm=7, lg=5,md=6),
                     ]),
                     dbc.Row([
                         dbc.Col([
@@ -207,9 +170,6 @@ app.layout = dbc.Container(children=[
                         dbc.Col([
                             html.H6('CMV x Estoque')
                         ],sm=4,md=4,lg=4),
-                        dbc.Col([
-                            html.Div(id='mes-cmv', className='dbc')
-                        ],sm=8,md=8,lg=8)
                     ]),
                     dbc.Row([
                         dbc.Col([
@@ -233,9 +193,6 @@ app.layout = dbc.Container(children=[
                         dbc.Col([
                             html.H6('Análise Horizontal')
                         ],sm=4,lg=3),
-                        dbc.Col([
-                            html.Div(id='mes-ah',className='dbc')
-                        ],sm=8,lg=9),
                     ]),
                     dbc.Row([
                         dbc.Col([
@@ -258,9 +215,6 @@ app.layout = dbc.Container(children=[
                         dbc.Col([
                             html.H6('Análise de Faturamento por Produto')
                             ],lg=6,sm=8),
-                        dbc.Col([
-                            html.Div(id='mes-fat',className='dbc')
-                            ],lg=6,sm=4),
                         ]),
                     dbc.Row([
                         dbc.Col([
@@ -287,9 +241,6 @@ app.layout = dbc.Container(children=[
                         dbc.Col([
                             html.H6('Desp. Administrativas.')
                         ],sm=6,md=6,lg=5),
-                        dbc.Col([
-                            html.Div(id='mes-adm',className='dbc')
-                        ],sm=6,md=6,lg=7),
                         ]),
                     dbc.Row([
                         dbc.Col([
@@ -309,9 +260,6 @@ app.layout = dbc.Container(children=[
                         dbc.Col([
                             html.H6('Impostos sobre Faturamento')
                         ],sm=8,md=8,lg=4),
-                        dbc.Col([
-                            html.Div(id='mes-imp',className='dbc')
-                        ],sm=4,md=4,lg=3),
                         ]),
                     dbc.Row([
                         dbc.Col([
@@ -331,9 +279,8 @@ app.layout = dbc.Container(children=[
 #========= CallBack =========
 
 # graph 1
-@app.callback([
+@app.callback(
     Output('graph1','figure'),
-    Output('mes', 'children')],
     Input('radio-month','value'),
 )
 
@@ -357,9 +304,7 @@ def graph1(month):
 
     fig1.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='morph')
 
-    select = html.H5(select_month(month))
-
-    return fig1, select
+    return fig1
 
 # Graph 2
 @app.callback(
@@ -438,9 +383,8 @@ def graph4(month):
 
 
 # graph 6
-@app.callback([
+@app.callback(
     Output('graph6','figure'),
-    Output('mes-rec', 'children')],
     Input('radio-month','value'),
 )
 
@@ -456,14 +400,11 @@ def graph6(month):
     fig6.update(layout_showlegend=False)
     fig6.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
 
-    select = html.H5(select_month(month))
-
-    return fig6, select
+    return fig6
 
 # graph 7
-@app.callback([
+@app.callback(
     Output('graph7','figure'),
-    Output('mes-cmv','children')],
     Input('radio-month','value'),
 )
 
@@ -479,9 +420,7 @@ def graph7(month):
     fig7.update(layout_showlegend=False)
     fig7.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
 
-    select = html.H5(select_month(month))
-
-    return fig7, select
+    return fig7
 
 # graph 8
 @app.callback(
@@ -509,9 +448,8 @@ def graph8(month):
     return fig8
 
 # graph 9
-@app.callback([
+@app.callback(
     Output('graph9','figure'),
-    Output('mes-adm','children')],
     Input('radio-month','value'),
 )
 
@@ -528,9 +466,7 @@ def graph9(month):
     fig9.update(layout_showlegend=False)
     fig9.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
 
-    select = select_month(month)
-
-    return fig9, select
+    return fig9
 
 # graph 10
 @app.callback(
@@ -559,9 +495,8 @@ def graph10(month):
     return fig10
 
 # graph 11
-@app.callback([
+@app.callback(
     Output('graph11','figure'),
-    Output('mes-imp','children')],
     Input('radio-month','value'),
 )
 
@@ -578,9 +513,7 @@ def graph11(month):
     fig11.update(layout_showlegend=False)
     fig11.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
 
-    select = select_month(month)
-
-    return fig11, select
+    return fig11
 
 # graph 12
 @app.callback(
@@ -619,9 +552,8 @@ def graph12(month):
     return fig12
 
 # graph 13
-@app.callback([
+@app.callback(
     Output('graph13','figure'),
-    Output('mes-fat','children')],
     Input('radio-month','value'),
 )
 
@@ -635,9 +567,7 @@ def graph13(month):
     fig13 = px.scatter(df10, x="ID_Produto", y="Faturamento")
     fig13.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=240, template='morph')
 
-    select = select_month(month)
-
-    return fig13, select
+    return fig13
 
 
 # Download dados produtos
@@ -1077,9 +1007,8 @@ def func(n_clicks):
 
 
 # graph 14
-@app.callback([
+@app.callback(
     Output('graph14','figure'),
-    Output('mes-ah','children')],
     Input('radio-month','value'),
 )
 
@@ -1098,9 +1027,7 @@ def graph14(month):
     fig14.update(layout_showlegend=False)
     fig14.update_layout(main_config, height=240, template='morph')
 
-    select = select_month(month)
-
-    return fig14, select
+    return fig14
 
 
 # Run server
