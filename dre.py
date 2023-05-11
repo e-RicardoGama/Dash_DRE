@@ -88,7 +88,7 @@ app.layout = dbc.Container(children=[
                     ])
                 ], style=tab_card)
             ])
-        ],sm=6, md=6,lg=9),
+        ],sm=6, md=6,lg=7),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -102,7 +102,7 @@ app.layout = dbc.Container(children=[
                     ])
             ], style=tab_card)
         ]),
-        ],sm=4, md=4, lg=2)
+        ],sm=4, md=4, lg=4)
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 2
