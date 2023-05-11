@@ -146,7 +146,7 @@ app.layout = dbc.Container(children=[
                     ])
                 ])
             ], style=tab_card)
-        ], sm=8, md=4, lg=3),
+        ], sm=8, md=8, lg=2),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -158,18 +158,21 @@ app.layout = dbc.Container(children=[
                     dbc.Row([
                         dbc.Col([
                             dcc.Graph(id='graph6',className='dbc',config=config_graph)
-                        ], sm=12, md=12)
+                        ],sm=12, md=6),
+                        dbc.Col([
+                            dcc.Graph(id='graph15',className='dbc',config=config_graph)
+                        ],sm=12, md=6),
                     ])
                ])
             ], style=tab_card)
-        ], sm=12, md=4, lg=3),
+        ], sm=12, md=6, lg=4),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
                     dbc.Row([
                         dbc.Col([
                             html.H6('CMV x Estoque')
-                        ],sm=4,md=4,lg=4),
+                        ],sm=4,md=6,lg=4),
                     ]),
                     dbc.Row([
                         dbc.Col([
@@ -181,7 +184,7 @@ app.layout = dbc.Container(children=[
                     ])
                ])
             ], style=tab_card)
-        ], sm=12, lg=4),
+        ], sm=12, lg=4, md=6),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 3
@@ -418,7 +421,7 @@ def graph7(month):
     fig7 = go.Figure()
     fig7.add_trace(go.Pie(labels=df7['Sub_Categoria'], values=df7['Valor_Total'], hole=.5))
     fig7.update(layout_showlegend=False)
-    fig7.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
+    fig7.update_layout(main_config, height=170, template='morph')
 
     return fig7
 
@@ -443,7 +446,7 @@ def graph8(month):
         textposition='auto',
         text=df7['Valor_Total'],
         insidetextfont=dict(family='Times', size=12)))
-    fig8.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
+    fig8.update_layout(main_config, height=170, template='morph')
 
     return fig8
 
@@ -464,7 +467,7 @@ def graph9(month):
     fig9 = go.Figure()
     fig9.add_trace(go.Pie(labels=df8['Tipo_Categoria'], values=df8['Valor_Total'], hole=.5))
     fig9.update(layout_showlegend=False)
-    fig9.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
+    fig9.update_layout(main_config, height=170, template='morph')
 
     return fig9
 
@@ -490,7 +493,7 @@ def graph10(month):
         textposition='auto',
         text=df8['Valor_Total'],
         insidetextfont=dict(family='Times', size=12)))
-    fig10.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
+    fig10.update_layout(main_config, height=170, template='morph')
 
     return fig10
 
@@ -511,7 +514,7 @@ def graph11(month):
     fig11 = go.Figure()
     fig11.add_trace(go.Pie(labels=df9['Tipo_Categoria'], values=df9['Valor_Total'], hole=.5))
     fig11.update(layout_showlegend=False)
-    fig11.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='morph')
+    fig11.update_layout(main_config, height=170, template='morph')
 
     return fig11
 
@@ -1029,7 +1032,37 @@ def graph14(month):
 
     return fig14
 
+# Graph 15
+@app.callback(
+    Output('graph15','figure'),
+    Input('radio-month','value'),
+)
+
+def graph15(month):
+
+    mask = month_filter(month)
+    df6 = df.loc[mask]
+
+    df6 = df6.loc[(df6['Sub_Categoria'] == 'Receita') | (df6['Sub_Categoria'] == 'Imp Vendas') | (
+                df6['Sub_Categoria'] == 'Desp Adm') | (df6['Sub_Categoria'] == 'Estoque') | (
+                              df6['Sub_Categoria'] == 'Impostos')]
+    df6 = df6.groupby('Sub_Categoria')['Valor_Total'].sum().reset_index()
+
+    fig15 = go.Figure(go.Bar(
+        x=df6['Sub_Categoria'],
+        y=df6['Valor_Total'],
+        orientation='v',
+        textposition='auto',
+        text=df6['Valor_Total'],
+        insidetextfont=dict(family='Times', size=12)))
+
+
+    fig15.update_layout(main_config, height=170, template='morph')
+
+    return fig15
+
+
 
 # Run server
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
