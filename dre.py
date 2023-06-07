@@ -76,7 +76,7 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         dbc.Col([
             dbc.Col([
-                html.Img(src=r'assets/logo.png',style={'height': '80%','width': '80%',
+                html.Img(src=r'assets/logo.png',style={'height': '70%','width': '70%',
                                                                'margin-top':'1px'})
                     ]),
             ],sm=2, md=2,lg=1),
@@ -84,10 +84,10 @@ app.layout = dbc.Container(children=[
             dbc.Card([
                dbc.CardBody([
                     dbc.Col([
-                        html.H5('Dashboard - Demonstração de Resultados'),
-                    ])
-                ], style=tab_card)
-            ])
+                        html.H5('Relatório - Demonstração de Resultados'),
+                    ], style={'margin-top':'15px'})
+                ])
+            ], style=tab_card)
         ],sm=10, md=10,lg=11),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
