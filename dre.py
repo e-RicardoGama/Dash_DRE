@@ -8,7 +8,7 @@ import openpyxl
 from dash.exceptions import PreventUpdate
 from dash_bootstrap_templates import load_figure_template
 
-load_figure_template('superhero')
+load_figure_template('lux')
 
 # import from folders/theme changer
 from app import *
@@ -76,8 +76,8 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         dbc.Col([
             dbc.Col([
-                html.Img(src=r'assets/logo.jpg',style={'height': '70%','width': '70%',
-                                                               'margin-top':'1px'})
+                html.Img(src=r'assets/logo.jpg',className='perfil_avatar',
+                    style={'background-color': 'transparent', 'border-color': 'transparent'})
                     ]),
             ],sm=2, md=2,lg=1),
         dbc.Col([
@@ -285,7 +285,7 @@ def graph1(month):
                                 number={'suffix': "%"},
                                 ))
 
-    fig1.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='superhero')
+    fig1.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='lux')
 
     return fig1
 
@@ -311,7 +311,7 @@ def graph2(month):
                                 number={'suffix': "%"},
                                 ))
 
-    fig2.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='superhero')
+    fig2.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='lux')
 
     return fig2
 
@@ -336,7 +336,7 @@ def graph3(month):
                                 number={'suffix': "%"},
                                 ))
 
-    fig3.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='superhero')
+    fig3.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='lux')
 
     return fig3
 
@@ -360,7 +360,7 @@ def graph4(month):
                                 value=df4['Lucro_Líquido'].iloc[0],
                                                                 ))
 
-    fig4.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='superhero')
+    fig4.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=90, template='lux')
 
     return fig4
 
@@ -381,7 +381,7 @@ def graph6(month):
     fig6 = go.Figure()
     fig6.add_trace(go.Pie(labels=df6['Sub_Categoria'], values=df6['Valor_Total'], pull=[0, 0, 0, 0, 0.2]))
     fig6.update(layout_showlegend=False)
-    fig6.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='superhero')
+    fig6.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=170, template='lux')
 
     return fig6
 
@@ -401,7 +401,7 @@ def graph7(month):
     fig7 = go.Figure()
     fig7.add_trace(go.Pie(labels=df7['Sub_Categoria'], values=df7['Valor_Total'], hole=.5))
     fig7.update(layout_showlegend=False)
-    fig7.update_layout(main_config, height=170, template='superhero')
+    fig7.update_layout(main_config, height=170, template='lux')
 
     return fig7
 
@@ -426,7 +426,7 @@ def graph8(month):
         textposition='auto',
         text=df7['Valor_Total'],
         insidetextfont=dict(family='Times', size=12)))
-    fig8.update_layout(main_config, height=170, template='superhero')
+    fig8.update_layout(main_config, height=170, template='lux')
 
     return fig8
 
@@ -447,7 +447,7 @@ def graph9(month):
     fig9 = go.Figure()
     fig9.add_trace(go.Pie(labels=df8['Tipo_Categoria'], values=df8['Valor_Total'], hole=.5))
     fig9.update(layout_showlegend=False)
-    fig9.update_layout(main_config, height=170, template='superhero')
+    fig9.update_layout(main_config, height=170, template='lux')
 
     return fig9
 
@@ -473,7 +473,7 @@ def graph10(month):
         textposition='auto',
         text=df8['Valor_Total'],
         insidetextfont=dict(family='Times', size=12)))
-    fig10.update_layout(main_config, height=170, template='superhero')
+    fig10.update_layout(main_config, height=170, template='lux')
 
     return fig10
 
@@ -494,7 +494,7 @@ def graph11(month):
     fig11 = go.Figure()
     fig11.add_trace(go.Pie(labels=df9['Tipo_Categoria'], values=df9['Valor_Total'], hole=.5))
     fig11.update(layout_showlegend=False)
-    fig11.update_layout(main_config, height=170, template='superhero')
+    fig11.update_layout(main_config, height=170, template='lux')
 
     return fig11
 
@@ -530,7 +530,7 @@ def graph12(month):
         textposition='auto',
         text=df9['Perc'],
         insidetextfont=dict(family='Times', size=12)))
-    fig12.update_layout(main_config, height=170, template='superhero')
+    fig12.update_layout(main_config, height=170, template='lux')
 
     return fig12
 
@@ -548,7 +548,7 @@ def graph13(month):
     df10 = df10.loc[(df10['Tipo_Categoria'] == 'Faturamento')].groupby(['ID_Produto', 'Faturamento'])['Valor_Total'].sum().reset_index()
 
     fig13 = px.scatter(df10, x="ID_Produto", y="Faturamento")
-    fig13.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=240, template='superhero')
+    fig13.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=240, template='lux')
 
     return fig13
 
@@ -590,7 +590,7 @@ def graph14(month):
 
     fig14 = px.line(df11, x='Mes', y='Valor_Total', color='Indicador', markers=True)
     fig14.update(layout_showlegend=False)
-    fig14.update_layout(main_config, height=240, template='superhero')
+    fig14.update_layout(main_config, height=240, template='lux')
 
     return fig14
 
@@ -619,7 +619,7 @@ def graph15(month):
         insidetextfont=dict(family='Times', size=12)))
 
 
-    fig15.update_layout(main_config, height=170, template='superhero')
+    fig15.update_layout(main_config, height=170, template='lux')
 
     return fig15
 
@@ -627,4 +627,4 @@ def graph15(month):
 
 # Run server
 if __name__ == '__main__':
-    app.run_server(threaded=True)
+    app.run_server(debug=True)
